@@ -1,34 +1,56 @@
+button {
+    border: none;
+    background-color: white;
+    padding: auto auto;
+    text-align: center;
+    font-size: 16px;
+}
+
 #calculator {
-    padding: auto;
-    height: 400px;
-    width: 250px;
-    background-color: pink;
+    margin: auto;
+    padding: 15px 15px 15px 15px;
+    width: 200px;
+    height: 250px;
+    border: 1px dashed salmon;
 }
 
 #display {
-    padding: auto auto auto auto;
-    margin: 25px auto 10px auto;
-    width: 200px;
+    margin: auto auto 10px auto;
+    padding: auto;
+    width: 190px;
     height: 40px;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: white;
+    border: 3px solid palevioletred;
     text-align: right;
 }
 
-button {
-    background-color: white;
-    border: none;
-    border-radius: 5px;
-    margin: 3px 3px 3px auto;
-    color: pink;
-    padding: 5% 5%;
-    text-align: center;
-    text-decoration: none;
+#keypad {
+    display: grid;
+    grid-template-areas: 
+    'main main main right'
+    'main main main right'
+    'main main main right'
+    'footer footer footer operator';
+    grid-gap: 5px;
 }
 
-#buttons {
-    /* div with all buttons */
+#numpad {
     display: grid;
-    grid-template-columns: auto;
+    grid-area: main;
+    grid-template-columns: auto auto auto;
+}
+
+#b {
+    display: grid;
+    grid-area: footer;
+    grid-template-columns: auto auto auto;
+}
+
+#operator {
+    display: grid;
+    grid-area: right;
+    grid-template-rows: auto auto auto auto;
+}
+
+#clear {
+    background-color: palevioletred;
 }
