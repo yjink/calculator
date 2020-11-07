@@ -35,3 +35,9 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
+
+// Numpad
+let number = document.querySelector('.numpad');
+numpad.addEventListener('click', () => {
+    console.log(this.id);
+})

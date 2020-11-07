@@ -9,4 +9,4 @@ Build a calculator
     - divide
 
 2. A function called operate that performs #1
-// Maybe switch
+
