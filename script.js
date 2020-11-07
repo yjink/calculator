@@ -1,5 +1,29 @@
+// Display: How to show stuff on screen
+let keys = document.querySelectorAll();
+let displayString = '';
+// these are the keys pressed by a person
+let display = document.querySelector('#display');
+
+keys.forEach(element => {
+    element.addEventListener('click', () => {
+        if (!element.value) {
+            displayString += element.value;
+        }
+
+        let displayP = document.createElement('p');
+        let displayT = document.createTextNode(displayString);
+
+        displayP.appendChild(displayT);
+
+        clearDisplay();
+
+        display.appendChild(displayP);
+    })
+});
+
+
 // Operate!
-function operate(a, operate, b) {
+function math(a, operate, b) {
     let total = 0;
     if (Number.isInteger(a) && Number.isInteger(b)) {
         if (operate === "+") {
@@ -36,8 +60,17 @@ function divide(a, b) {
     return a / b;
 }
 
-// Numpad
-let number = document.querySelector('.numpad');
-numpad.addEventListener('click', () => {
-    console.log(this.id);
-})
+// Clear Display
+
+function clearDisplay() {
+    while(display.lastChild) {
+        display.removeChild(display.lastChild);
+        button = '';
+    } 
+}
+
+// The buttons
+// Clear button
+
+let clear = document.querySelector('#clear');
+clear.addEventListener('click', clearDisplay());
