@@ -11,7 +11,8 @@ button {
     padding: 15px 15px 15px 15px;
     width: 200px;
     height: 250px;
-    border: 1px dashed salmon;
+    border: 3px solid orangered;
+    background-color: coral;
 }
 
 #display {
@@ -19,7 +20,7 @@ button {
     padding: auto;
     width: 190px;
     height: 40px;
-    border: 3px solid palevioletred;
+    border: 3px solid orangered;
     text-align: right;
 }
 
@@ -52,5 +53,5 @@ button {
 }
 
 #clear {
-    background-color: palevioletred;
+    background-color: orangered;
 }
