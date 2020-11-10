@@ -7,12 +7,13 @@ let display = document.querySelector('#display');
 
 keys.forEach(element => {
     element.addEventListener('click', () => {
-        // remember to do something about 0 as a number in first position
         displayString += element.value;
+        // adds keys pressed
 
         if (displayString[0] === '0') {
             displayString = displayString.slice(1);
         }
+        // if '0' is in first position, is removed
 
         let displayP = document.createElement('p');
         let displayT = document.createTextNode(displayString);
@@ -29,19 +30,18 @@ keys.forEach(element => {
 
 
 // Operate: grab string from #display and perform the required math
-
 function operations(arr) {
-    let total = 0;
     for (let i = 0; i < arr.length; i++) {
         if (arr.length === 3) {
             total = doMath(arr);
         } else {
             let remainder = arr.slice(3);
             let math = doMath(arr.slice(0,3));
-            remainder.unshift(nums);
+            remainder.unshift(math);
             // placing the total of the first bit of math in the front
             // so that it can be included in the rest of the operations
             operations(remainder);
+            // recursive case
         }
     }
     return total;
@@ -89,8 +89,20 @@ clear.addEventListener('click', () => {
 // Equals button
 let equals = document.querySelector('#equals');
 equals.addEventListener('click', () => {
-    clearDisplay();
-    // first clear display
+    // do math
+    let arr = displayString.split(' ');
+    let mathTotal = operations(arr);
 
+    let displayP = document.createElement('p');
+    let displayT = document.createTextNode(mathTotal);
 
-})
+    displayP.appendChild(displayT);
+    
+    // clear screen
+    while(display.lastChild) {
+        display.removeChild(display.lastChild);
+    }
+
+    // return total
+    display.appendChild(displayP);
+});
