@@ -1,22 +1,27 @@
 // Display: How to show stuff on screen
 let keys = document.querySelectorAll('.numpad');
-let displayString = '';
+let displayString = [];
 // keys pressed that shows up on screen
 let display = document.querySelector('#display');
 // the screen
 
 keys.forEach(element => {
     element.addEventListener('click', () => {
-        displayString += element.value;
+        displayString.push(element.value);
         // adds keys pressed
 
-        if (displayString[0] === '0') {
+        if (displayString[0] === '0' || isNaN(displayString[0])) {
             displayString = displayString.slice(1);
         }
         // if '0' is in first position, is removed
+        
+        displayString = cleanArr(displayString);
+        // figure out if two concurrent indexes are operators
+        // the later should replace the former
+
 
         let displayP = document.createElement('p');
-        let displayT = document.createTextNode(displayString);
+        let displayT = document.createTextNode(displayString.join(' '));
 
         displayP.appendChild(displayT);
 
@@ -28,6 +33,19 @@ keys.forEach(element => {
     })
 });
 
+function cleanArr(arr) {
+    let nArr = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        if (isNaN(arr[i - 1]) && isNaN(arr[i])) {
+            nArr.pop();
+            nArr.push(arr[i]); 
+        } else {
+            nArr.push(arr[i]);
+        }
+    }
+    return nArr;
+}
 
 // Operate: grab string from #display and perform the required math
 function operations(arr) {
@@ -91,10 +109,10 @@ let equals = document.querySelector('#equals');
 equals.addEventListener('click', () => {
     // do math
     let arr = displayString.split(' ');
-    let mathTotal = operations(arr);
+    displayString = operations(arr);
 
     let displayP = document.createElement('p');
-    let displayT = document.createTextNode(mathTotal);
+    let displayT = document.createTextNode(displayString);
 
     displayP.appendChild(displayT);
     
