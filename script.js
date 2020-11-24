@@ -9,6 +9,11 @@ keys.forEach(element => {
     element.addEventListener('click', () => {
         display.push(element.value);
         // adds keys pressed
+
+        if (display[0] === '0' || isNaN(display[0])) {
+            display = display.slice(1);
+        }
+        // if '0' is in first position, is removed
         
         display = cleanArr(display);
         // figure out if two concurrent indexes are operators
@@ -25,11 +30,6 @@ keys.forEach(element => {
         }
 
         screen.appendChild(displayP);
-
-        if (display[0] === '0' || isNaN(display[0])) {
-            display = display.slice(1);
-        }
-        // if '0' is in first position, is removed
     })
 });
 
@@ -83,34 +83,30 @@ function doMath(arr) {
 
 // Clear Display
 
-// function clearDisplay() {
-//     while(display.lastChild) {
-//         display.removeChild(display.lastChild);
-//     } 
+function clearDisplay() {
+    while(screen.lastChild) {
+        screen.removeChild(screen.lastChild);
+    } 
 
-//     while(displayString) {
-//         displayString.pop();
-//     }
+    display = [];
 
-//     console.log(displayString);
+    display.push(0);
 
-//     displayString.push(0);
+    let displayP = document.createElement('p');
+    let displayT = document.createTextNode(display);
 
-//     let displayP = document.createElement('p');
-//     let displayT = document.createTextNode(displayString);
+    displayP.appendChild(displayT);
+    screen.appendChild(displayP);
+    // this will reset display to '0'
+}
 
-//     displayP.appendChild(displayT);
-//     display.appendChild(displayP);
-//     // this will reset display to '0'
-// }
 
-// The buttons
 // Clear button
 
-// let clear = document.querySelector('#clear');
-// clear.addEventListener('click', () => {
-//     clearDisplay();
-// });
+let clear = document.querySelector('#clear');
+clear.addEventListener('click', () => {
+    clearDisplay();
+});
 
 
 // Equals button
@@ -134,6 +130,6 @@ equals.addEventListener('click', () => {
     screen.appendChild(displayP);
 
 
+    display = [];
     display.push(answer);
-    alert(display)
 });
