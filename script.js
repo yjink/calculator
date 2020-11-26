@@ -7,7 +7,7 @@ let screen = document.querySelector('#display');
 
 keys.forEach(element => {
     element.addEventListener('click', () => {
-        display.push(element.value);
+        display.push(element.id);
         // adds keys pressed
 
         if (display[0] === '0' || isNaN(display[0])) {
@@ -90,7 +90,7 @@ function clearDisplay() {
 
     display = [];
 
-    display.push(0);
+    display.push('0');
 
     let displayP = document.createElement('p');
     let displayT = document.createTextNode(display);
