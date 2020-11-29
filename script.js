@@ -17,13 +17,13 @@ keys.forEach(element => {
         } // if '0' pushed, first '0' is removed
         else if (display[0] === '0' && display[1] !== '0') {
             display = display.slice(1);
-        } // if '0' in 1st index is removed
+        } // if '0' in 1st index, remove
         else if (display[0] === num && Number.isInteger(Number(display[1]))) {
             display = display.slice(-1);
         } // if number is entered after equals
 
         display = cleanArr(display);
-        // figure out if two concurrent indexes are operators
+        // if two concurrent indexes are operators
         // the later should replace the former
 
 
@@ -40,7 +40,7 @@ keys.forEach(element => {
     })
 });
 
-// If two operators, 2nd replaces 1st
+// When two operators occur consecutively
 function cleanArr(arr) {
     let nArr = [];
 
