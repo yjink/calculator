@@ -7,39 +7,37 @@ let screen = document.querySelector('#display');
 let num = "";
 // For if user inputs number after calculation
 
+
 keys.forEach(element => {
-    if (display.length < 15) {
-        element.addEventListener('click', () => {
-            display.push(element.id);
-            // adds keys pressed
+    element.addEventListener('click', () => {
+        display.push(element.id);
+        // adds keys pressed
+        if (display[0] === '0' && display[1] === '0') {
+            display = display.slice(1);
+        } // if '0' pushed, first '0' is removed
+        else if (display[0] === '0' && display[1] !== '0') {
+            display = display.slice(1);
+        } // if '0' in 1st index is removed
+        else if (display[0] === num && Number.isInteger(Number(display[1]))) {
+            display = display.slice(-1);
+        } // if number is entered after equals
 
-            if (display[0] === '0' && display[1] === '0') {
-                display = display.slice(1);
-            } // if '0' pushed, first '0' is removed
-            else if (display[0] === '0' && display[1] !== '0') {
-                display = display.slice(1);
-            } // if '0' in 1st index is removed
-            else if (display[0] === num && Number.isInteger(Number(display[1]))) {
-                display = display.slice(-1);
-            } // if number is entered after equals
-            
-            display = cleanArr(display);
-            // figure out if two concurrent indexes are operators
-            // the later should replace the former
+        display = cleanArr(display);
+        // figure out if two concurrent indexes are operators
+        // the later should replace the former
 
 
-            let displayP = document.createElement('p');
-            let displayT = document.createTextNode(display.join(''));
+        let displayP = document.createElement('p');
+        let displayT = document.createTextNode(display.join(''));
 
-            displayP.appendChild(displayT);
+        displayP.appendChild(displayT);
 
-            while(screen.lastChild) {
-                screen.removeChild(screen.lastChild);
-            }
-
-            screen.appendChild(displayP);
-        })
+        while(screen.lastChild) {
+        screen.removeChild(screen.lastChild);
     }
+
+        screen.appendChild(displayP);
+    })
 });
 
 // If two operators, 2nd replaces 1st
@@ -60,7 +58,10 @@ function cleanArr(arr) {
 // Operate: grab string from #display and perform the required math
 function operations(arr) {
     for (let i = 0; i < arr.length; i++) {
-        if (arr.length === 3) {
+        if (arr.length < 3) {
+            return display;
+        }
+        else if (arr.length === 3) {
             total = doMath(arr);
         } else {
             let remainder = arr.slice(3);
