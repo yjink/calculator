@@ -4,33 +4,42 @@ let display = [];
 // keys pressed that shows up on screen
 let screen = document.querySelector('#display');
 // the screen
+let num = "";
+// For if user inputs number after calculation
 
 keys.forEach(element => {
-    element.addEventListener('click', () => {
-        display.push(element.id);
-        // adds keys pressed
+    if (display.length < 15) {
+        element.addEventListener('click', () => {
+            display.push(element.id);
+            // adds keys pressed
 
-        if (display[0] === '0' || isNaN(display[0])) {
-            display = display.slice(1);
-        }
-        // if '0' is in first position, is removed
-        
-        display = cleanArr(display);
-        // figure out if two concurrent indexes are operators
-        // the later should replace the former
+            if (display[0] === '0' && display[1] === '0') {
+                display = display.slice(1);
+            } // if '0' pushed, first '0' is removed
+            else if (display[0] === '0' && display[1] !== '0') {
+                display = display.slice(1);
+            } // if '0' in 1st index is removed
+            else if (display[0] === num && Number.isInteger(Number(display[1]))) {
+                display = display.slice(-1);
+            } // if number is entered after equals
+            
+            display = cleanArr(display);
+            // figure out if two concurrent indexes are operators
+            // the later should replace the former
 
 
-        let displayP = document.createElement('p');
-        let displayT = document.createTextNode(display.join(''));
+            let displayP = document.createElement('p');
+            let displayT = document.createTextNode(display.join(''));
 
-        displayP.appendChild(displayT);
+            displayP.appendChild(displayT);
 
-        while(screen.lastChild) {
-            screen.removeChild(screen.lastChild);
-        }
+            while(screen.lastChild) {
+                screen.removeChild(screen.lastChild);
+            }
 
-        screen.appendChild(displayP);
-    })
+            screen.appendChild(displayP);
+        })
+    }
 });
 
 // If two operators, 2nd replaces 1st
@@ -114,7 +123,7 @@ let equals = document.querySelector('#equals');
 equals.addEventListener('click', () => {
 
     // do math
-    let answer = operations(display.join('').split(' '));
+    let answer = String(operations(display.join('').split(' ')));
 
     let displayP = document.createElement('p');
     let displayT = document.createTextNode(answer);
@@ -132,4 +141,5 @@ equals.addEventListener('click', () => {
 
     display = [];
     display.push(answer);
+    num = answer;
 });

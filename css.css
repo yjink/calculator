@@ -1,3 +1,8 @@
+div {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
 #numpad {
     border: none;
     background-color: white;
@@ -13,6 +18,7 @@
     height: 250px;
     border: 3px solid orangered;
     background-color: coral;
+    text-align: center;
 }
 
 #display {
@@ -48,6 +54,7 @@
 
 #operator {
     display: grid;
+    grid-gap: 5px;
     grid-area: right;
     grid-template-rows: auto auto auto auto;
 }
