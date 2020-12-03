@@ -7,6 +7,15 @@ let screen = document.querySelector('#display');
 let num = "";
 // For if user inputs number after calculation
 
+// Highlighter
+keys.forEach(element => {
+    element.addEventListener('mousedown', () => {
+        element.style.backgroundColor = "rgba(240,248,255, 0.2)";
+    })
+    element.addEventListener('mouseup', () => {
+        element.style.backgroundColor = "transparent";
+    })
+})
 
 keys.forEach(element => {
     element.addEventListener('click', () => {

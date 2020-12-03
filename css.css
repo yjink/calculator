@@ -10,23 +10,39 @@ body {
     color: white;
   }
 
-#calculator {
-    margin: auto;
-    padding: 15px 15px 15px 15px;
-    width: 200px;
-    height: 250px;
-    border: 3px solid orangered;
-    background-color: coral;
+  div {
+    border: 1px solid transparent;
+    border-collapse: collapse;
+  }
+  
+  #calculator {
+    position: relative;
+    width: 25%;
+    height: 45%;
+    min-width: 300px;
+    min-height: 300px;
+    margin-left: 25%;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    boder-collapse: collapse;
+    font-family: "Lucida Console", Courier, monospace;
+    font-size: 15px;
+    color: white;
     text-align: center;
-}
+  }
 
 #display {
-    margin: auto auto 10px auto;
-    padding: auto;
-    width: 190px;
-    height: 40px;
-    border: 3px solid orangered;
+    padding: auto auto 5px auto;
+    width: 100%;
+    height: 50px;
     text-align: right;
+    font-size: 25px;
+}
+  
+#display p {
+    margin-left: 15px;
 }
 
 #keypad {
@@ -35,7 +51,19 @@ body {
     'main main main right'
     'main main main right'
     'main main main right'
-    'footer footer footer right';
+    'main main main right';
+    grid-gap: 0px;
+    width: 100%;
+    height: 100%;
+    margin: auto auto auto auto;
+    padding: auto auto auto auto;
+    bottom: 0px;
+}
+
+.numpad {
+    height: 45px;
+    text-align: center;
+    padding:  10%;
 }
 
 #numpad {
@@ -46,7 +74,6 @@ body {
 
 #b {
     display: grid;
-    grid-area: footer;
     grid-template-columns: auto auto auto;
 }
 
@@ -54,9 +81,11 @@ body {
     display: grid;
     grid-area: right;
     grid-template-rows: auto auto auto auto;
+    padding: 10%;
 }
 
-
-#clear {
-    background-color: orangered;
+#clear, #equals {
+    height: 45px;
+    background-color: rgba(240, 248, 255, 0.2);
+    padding:  10%;
 }
