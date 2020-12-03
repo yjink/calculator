@@ -40,18 +40,23 @@ keys.forEach(element => {
     })
 });
 
-// When two operators occur consecutively
+// For when two operators occurr concurrently
+// And when multiple 0 is pressed
 function cleanArr(arr) {
     let nArr = [];
 
     for (let i = 0; i < arr.length; i++) {
+        nArr.push(arr[i]);
         if (isNaN(arr[i - 1]) && isNaN(arr[i])) {
-            nArr.pop();
-            nArr.push(arr[i]); 
-        } else {
+            nArr = nArr.slice(0, (i - 1));
             nArr.push(arr[i]);
+        } else if (isNaN(arr[i - 1]) && arr[i] === '0' && arr[i + 1] === '0') {
+            nArr.pop();
+        } else if (isNaN(arr[i - 1]) && arr[i] === '0' && arr[i + 1] > 0) {
+            nArr.pop();
         }
     }
+
     return nArr;
 }
 
@@ -112,7 +117,6 @@ function clearDisplay() {
 
 
 // Clear button
-
 let clear = document.querySelector('#clear');
 clear.addEventListener('click', () => {
     clearDisplay();
