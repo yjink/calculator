@@ -1,15 +1,14 @@
-div {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-#numpad {
-    border: none;
-    background-color: white;
-    padding: auto auto;
-    text-align: center;
-    font-size: 16px;
-}
+body {
+    background-image: url("https://cdn.pixabay.com/photo/2017/10/26/19/45/christmas-2892235_960_720.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: white;
+  }
 
 #calculator {
     margin: auto;
@@ -36,8 +35,7 @@ div {
     'main main main right'
     'main main main right'
     'main main main right'
-    'footer footer footer operator';
-    grid-gap: 5px;
+    'footer footer footer right';
 }
 
 #numpad {
@@ -54,10 +52,10 @@ div {
 
 #operator {
     display: grid;
-    grid-gap: 5px;
     grid-area: right;
     grid-template-rows: auto auto auto auto;
 }
+
 
 #clear {
     background-color: orangered;
