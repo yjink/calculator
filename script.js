@@ -148,3 +148,23 @@ equals.addEventListener('click', () => {
     display.push(answer);
     num = answer;
 });
+
+// Backspace button
+let back = document.querySelector('#back');
+back.addEventListener('click', () => {
+
+    if (display.length > 1) {
+        display.pop();
+
+        let displayP = document.createElement('p');
+        let displayT = document.createTextNode(display.join(''));
+
+        displayP.appendChild(displayT);
+
+        while(screen.lastChild) {
+        screen.removeChild(screen.lastChild);
+        }
+
+        screen.appendChild(displayP);
+    }
+})
