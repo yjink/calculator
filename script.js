@@ -1,5 +1,5 @@
 // Display: How to show stuff on screen
-let keys = document.querySelectorAll('.numpad');
+let keys = document.querySelectorAll('.key');
 let display = [];
 // keys pressed that shows up on screen
 let screen = document.querySelector('#display');
@@ -19,7 +19,7 @@ keys.forEach(element => {
 
 keys.forEach(element => {
     element.addEventListener('click', () => {
-        display.push(element.id);
+        display.push(element.value);
         // adds keys pressed
         if (display[0] === '0' && display[1] === '0') {
             display = display.slice(1);
@@ -56,6 +56,7 @@ function cleanArr(arr) {
 
     for (let i = 0; i < arr.length; i++) {
         nArr.push(arr[i]);
+
         if (isNaN(arr[i - 1]) && isNaN(arr[i])) {
             nArr = nArr.slice(0, (i - 1));
             nArr.push(arr[i]);
@@ -93,15 +94,23 @@ function operations(arr) {
 function doMath(arr) {
     // once a [num1, operating symbol, num2] has been passed to this function
     // math 
+    let answer = 0;
+
     if (arr[1] === '+') {
-        return Number(arr[0]) + Number(arr[2]);
+        answer = Number(arr[0]) + Number(arr[2]);
     } else if (arr[1] === '-') {
-        return Number(arr[0]) - Number(arr[2]);
+        answer = Number(arr[0]) - Number(arr[2]);
     } else if (arr[1] === '*') {
-        return Number(arr[0]) * Number(arr[2]);
+        answer = Number(arr[0]) * Number(arr[2]);
     } else if (arr[1] === '/') {
-        return Number(arr[0]) / Number(arr[2]);
+        answer = Number(arr[0]) / Number(arr[2]);
     } else return 'Error!';
+
+    if (answer < 0) {
+        answer = +('0' + String(answer)).toFixed(5)
+    }
+
+    return answer;
 }
 
 
