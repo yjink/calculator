@@ -180,7 +180,20 @@ back.addEventListener('click', () => {
         displayP.appendChild(displayT);
 
         while(screen.lastChild) {
-        screen.removeChild(screen.lastChild);
+            screen.removeChild(screen.lastChild);
+        }
+
+        screen.appendChild(displayP);
+    } else {
+        display.pop();
+        
+        let displayP = document.createElement('p');
+        let displayT = document.createTextNode('0');
+
+        displayP.appendChild(displayT);
+
+        while(screen.lastChild) {
+            screen.removeChild(screen.lastChild);
         }
 
         screen.appendChild(displayP);
