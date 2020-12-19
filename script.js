@@ -52,6 +52,8 @@ function cleanDisplay(arr) {
 
             if (num) {
                 num+= element;
+            } else if (i > 1 && isNaN(Number(input[i - 1]))) {
+                num+= element;
             }
         }
 
@@ -133,10 +135,10 @@ function doMath(arr) {
     else if (arr[1] === '-') {
         answer = Number(arr[0]) - Number(arr[2]);
     }
-    else if (arr[1] === '*') {
+    else if (arr[1] === '×') {
         answer = Number(arr[0]) * Number(arr[2]);        
     }
-    else if (arr[1] === '/') {
+    else if (arr[1] === '÷') {
         answer = Number(arr[0]) / Number(arr[2]);        
     } 
     else return 'Error!';
@@ -145,7 +147,7 @@ function doMath(arr) {
         answer = '0' + String(answer);
     }
 
-    return +(answer).toFixed(5);
+    return +(answer).toFixed(15);
 }
 
 function clearDisplay() {
@@ -231,15 +233,3 @@ backspace.addEventListener('click', () => {
 })
 
 
-
-// THE DESIGN
-// highlighter: highlights key when pressed
-keys.forEach(element => {
-    element.addEventListener('mousedown', () => {
-        element.style.backgroundColor = "rbga(240,248,255,0.2)";
-    }) 
-
-    element.addEventListenener('mouseup', () => {
-        element.style.backgroundColor = "transparent";
-    })
-})
