@@ -1,4 +1,5 @@
 let keys = document.querySelectorAll('.key');
+let buttons = document.querySelectorAll('button');
 let display = []; 
 // keys that pressed that show up on screen
 let screen = document.querySelector('#display');
@@ -11,7 +12,7 @@ let total = '';
 keys.forEach(element => {
     element.addEventListener('click', () => {
 
-        if (display.length < 15) {
+        if (display.join('').length < 15) {
             // limit length of characters displayed
             let buttonVal = element.value;
 
@@ -233,3 +234,20 @@ backspace.addEventListener('click', () => {
 })
 
 
+// THE DESIGN
+buttons.forEach(element => {
+    element.addEventListener('mousedown', () => {
+        element.style.backgroundColor = "rgba(240,248,255,0.35)";
+        element.style.boxShadow = "inset 0.35em 0.15em rgba(240,248,255,0.75)";
+    })
+    
+    element.addEventListener('mouseup', () => {
+        if (element.id === 'clear' || element.id === 'equals') {
+          element.style.backgroundColor = "rgba(240,248,255,0.1)";
+          element.style.boxShadow = "none";
+        } else {
+          element.style.backgroundColor = "transparent";
+          element.style.boxShadow = "none";
+        }
+    })  
+})
