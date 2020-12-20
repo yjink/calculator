@@ -108,7 +108,6 @@ function cleanDisplay(arr) {
 }
 
 function operations(arr) {
-    let answer;
     for (let i = 0; i < arr.length; i++) {
         if (arr.length < 3) {
             if (isNaN(Number(arr[arr.length - 1]))) {
