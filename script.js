@@ -99,7 +99,9 @@ function cleanDisplay(arr) {
     }
 
     if (isNaN(Number(display[0])) || display.length === 0) {
-        display.unshift('0');
+        if (display[0] !== '-') {
+            display.unshift('0');
+        }
     }
 
     return display;
