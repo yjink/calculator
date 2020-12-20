@@ -76,7 +76,7 @@ function cleanDisplay(arr) {
                     num = '0' + element;
                 }
             }
-        }
+        } 
 
         else {
             if (num) {
@@ -98,16 +98,15 @@ function cleanDisplay(arr) {
         display.push(num);
     }
 
-    if (isNaN(Number(display[0])) || display.length === 0) {
-        if (display[0] !== '-') {
-            display.unshift('0');
-        }
-    }
+    // if (isNaN(Number(display[0])) || display.length === 0) {
+    //     display.unshift('0');
+    // }
 
     return display;
 }
 
 function operations(arr) {
+    //let answer;
     for (let i = 0; i < arr.length; i++) {
         if (arr.length < 3) {
             if (isNaN(Number(arr[arr.length - 1]))) {
@@ -131,7 +130,7 @@ function operations(arr) {
 }
 
 function doMath(arr) {
-    // arr is [a, operator, b]
+    // arr should be [a, operator, b]
     let answer = 0;
 
     if (arr[1] === '+') {
@@ -148,7 +147,7 @@ function doMath(arr) {
     } 
     else return 'Error!';
 
-    if (answer < 0) {
+    if (answer < 1 && answer > 0) {
         answer = '0' + String(answer);
     }
 
