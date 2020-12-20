@@ -111,7 +111,10 @@ function operations(arr) {
     let answer;
     for (let i = 0; i < arr.length; i++) {
         if (arr.length < 3) {
-            return display;
+            if (isNaN(Number(arr[arr.length - 1]))) {
+                return arr.join('').slice(0,-1);
+                // if the input equation is incomplete, return the numbers only
+            } else return display.join('');
         }
         else if (arr.length === 3) {
             answer = doMath(arr); 
