@@ -61,7 +61,8 @@ function cleanDisplay(arr) {
         else if (Number(element)) {
 
             if (num[0] === '0') {
-                num += element;
+                // num += element;
+                num = element;
             } else {
                 num += element;
             } 
@@ -98,17 +99,17 @@ function cleanDisplay(arr) {
         display.push(num);
     }
 
-    // if (isNaN(Number(display[0])) || display.length === 0) {
-    //     display.unshift('0');
-    // }
-
     return display;
 }
 
 function operations(arr) {
-    //let answer;
+    let answer;
     for (let i = 0; i < arr.length; i++) {
-        if (arr.length < 3) {
+        if (isNaN(Number(arr[0])) && arr[0] !== '0') {
+            arr.unshift('0');
+            operations(arr);
+        }
+        else if (arr.length < 3) {
             if (isNaN(Number(arr[arr.length - 1]))) {
                 return arr.join('').slice(0,-1);
                 // if the input equation is incomplete, return the numbers only
@@ -122,7 +123,7 @@ function operations(arr) {
             let math = doMath(arr.slice(0,3));
             remainder.unshift(math);
             // places answer of the first equation in the front of the array
-            operations(remainder);
+            answer = operations(remainder);
             // recursive case
         }
     }
@@ -151,7 +152,7 @@ function doMath(arr) {
         answer = '0' + String(answer);
     }
 
-    return +(answer).toFixed(15);
+    return +(answer).toFixed(14);
 }
 
 function clearDisplay() {
