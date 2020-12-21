@@ -51,17 +51,15 @@ function cleanDisplay(arr) {
 
         if (element === '0') {
 
-            if (num) {
-                num+= element;
-            } else if (i > 1 && isNaN(Number(input[i - 1]))) {
-                num+= element;
-            }
+            if (Number(num) || input[i - 1] === '.' || num.includes('.')) {
+                num += element;
+            } 
         }
 
         else if (Number(element)) {
 
-            if (num[0] === '0') {
-                // num += element;
+            if (num[0] === '0' && !num.includes('.')) {
+                // if 0 is followed by a whole number
                 num = element;
             } else {
                 num += element;
@@ -71,7 +69,7 @@ function cleanDisplay(arr) {
         else if (element === '.') {
 
             if (!num.includes('.')) {
-                if (Number(num[0])) {
+                if (Number(input[i - 1]) {
                     num += element;
                 } else {
                     num = '0' + element;
