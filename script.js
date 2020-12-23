@@ -105,19 +105,24 @@ function cleanDisplay(arr) {
 function operations(arr) {
     let answer;
     for (let i = 0; i < arr.length; i++) {
+
+        // if the array starts with an operator
         if (isNaN(Number(arr[0])) && arr[0] !== '0') {
             arr.unshift('0');
             operations(arr);
         }
+        // else if the array is less than 3 elements
         else if (arr.length < 3) {
             if (isNaN(Number(arr[arr.length - 1]))) {
                 return arr.join('').slice(0,-1);
                 // if the input equation is incomplete, return the numbers only
             } else return display.join('');
         }
+        // else if array is 3 elements
         else if (arr.length === 3) {
             answer = doMath(arr); 
         }
+        // else if array is greater than 3 elements
         else {
             let remainder = arr.slice(3);
             let math = doMath(arr.slice(0,3));
@@ -148,11 +153,8 @@ function doMath(arr) {
     } 
     else return 'Error!';
 
-    if (answer < 1 && answer > 0) {
-        answer = '0' + String(answer);
-    }
-
-    return +(answer).toFixed(14);
+    answer = +answer.toFixed(14);
+    return answer;
 }
 
 function clearDisplay() {
