@@ -53,7 +53,9 @@ function cleanDisplay(arr) {
 
             if (Number(num) || input[i - 1] === '.' || num.includes('.')) {
                 num += element;
-            } 
+            } else if (!num) {
+                num = '0';
+            }
         }
 
         else if (Number(element)) {
@@ -69,7 +71,7 @@ function cleanDisplay(arr) {
         else if (element === '.') {
 
             if (!num.includes('.')) {
-                if (Number(input[i - 1]) {
+                if (Number(input[i - 1])) {
                     num += element;
                 } else {
                     num = '0' + element;
