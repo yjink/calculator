@@ -24,9 +24,10 @@ body.addEventListener('keydown', event => {
         }
 
         display.push(keyVal);
+    } else if (event.key === 'Enter') {
+        mathEquals();
     } else {
         display.push(keyVal);
-        
     }
 
     display = cleanDisplay(display);
@@ -221,6 +222,10 @@ clearButton.addEventListener('click', () => {
 // Equals Button
 let equalsButton = document.querySelector('#equals');
 equalsButton.addEventListener('click', () => {
+    mathEquals();
+})
+
+function mathEquals() {
     let answer = String(operations(display));
     let displayP = document.createElement('p');
     let displayText = document.createTextNode(answer);
@@ -236,7 +241,7 @@ equalsButton.addEventListener('click', () => {
     display = [];
     display.push(answer);
     total = answer;
-})
+}
 
 // Backspace Button
 let backspace = document.querySelector('#back');
