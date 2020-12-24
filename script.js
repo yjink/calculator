@@ -1,3 +1,4 @@
+let body = document.querySelector('body');
 let keys = document.querySelectorAll('.key');
 let buttons = document.querySelectorAll('button');
 let display = []; 
@@ -6,6 +7,43 @@ let screen = document.querySelector('#display');
 // where user input and math is shown;
 let total = '';
 // total at the end of an equation; for user input after an equation
+
+// KEYBOARD COMPATIBILITY
+
+body.addEventListener('keydown', event => {
+    let cKey = '1234567890/*-+.';
+    // cKey are keys on a calculator
+
+    if (cKey.includes(event.key) && display.join('').length < 14) {
+        let keyVal = event.key;
+
+        if (total === display[0] && (!display[1])) {
+            if (Number.isInteger(Number(keyVal)) || keyVal === '.') {
+                clearDisplay();
+            }
+        }
+
+        display.push(keyVal);
+    } else {
+        display.push(keyVal);
+        
+    }
+
+    display = cleanDisplay(display);
+
+    let displayP = document.createElement('p');
+    let displayText = document.createTextNode(display.join(''));
+
+    displayP.appendChild(displayText);
+
+    while (screen.lastChild) {
+        screen.removeChild(screen.lastChild);
+    }
+
+    screen.appendChild(displayP);
+
+
+})
 
 
 // THE MECHANICS
@@ -238,6 +276,8 @@ backspace.addEventListener('click', () => {
         screen.appendChild(displayP);
     }
 })
+
+
 
 
 // THE DESIGN
