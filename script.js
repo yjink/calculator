@@ -17,7 +17,7 @@ body.addEventListener('keydown', event => {
     if (cKey.includes(event.key) && display.join('').length < 14) {
         let keyVal = event.key;
 
-        if (total === display[0] && (!display[1])) {
+        if (total === display[0]) {
             if (Number.isInteger(Number(keyVal)) || keyVal === '.') {
                 clearDisplay();
             }
@@ -26,6 +26,8 @@ body.addEventListener('keydown', event => {
         display.push(keyVal);
     } else if (event.key === 'Enter') {
         mathEquals();
+    } else if (event.key === 'Backspace') {
+        back();  
     } else {
         display.push(keyVal);
     }
@@ -51,7 +53,7 @@ body.addEventListener('keydown', event => {
 keys.forEach(element => {
     element.addEventListener('click', () => {
 
-        if (display.join('').length < 15) {
+        if (display.join('').length < 14) {
             // limit length of characters displayed
             let buttonVal = element.value;
 
@@ -95,6 +97,7 @@ function cleanDisplay(arr) {
             } else if (!num) {
                 num = '0';
             }
+
         }
 
         else if (Number(element)) {
@@ -126,7 +129,11 @@ function cleanDisplay(arr) {
             }
 
             if (!isNaN(Number(input[i - 1]))) {
-                display.push(element);
+                if (element === '*') {
+                    display.push('×');
+                } else if (element === '/') {
+                    display.push('÷');
+                } else display.push(element);
             } else {
                 display.pop();
                 display.push(element);
@@ -184,10 +191,10 @@ function doMath(arr) {
     else if (arr[1] === '-') {
         answer = Number(arr[0]) - Number(arr[2]);
     }
-    else if (arr[1] === '×') {
+    else if (arr[1] === '×' || arr[1] === '*') {
         answer = Number(arr[0]) * Number(arr[2]);        
     }
-    else if (arr[1] === '÷') {
+    else if (arr[1] === '÷' || arr[1] === '/') {
         answer = Number(arr[0]) / Number(arr[2]);        
     } 
     else return 'Error!';
@@ -246,6 +253,10 @@ function mathEquals() {
 // Backspace Button
 let backspace = document.querySelector('#back');
 backspace.addEventListener('click', () => {
+    back();
+})
+
+function back() {
     if (display.join('').length > 1) {
         let lastElement = display.pop();
         if (lastElement.length > 1) {
@@ -268,6 +279,7 @@ backspace.addEventListener('click', () => {
         screen.appendChild(displayP);
     } else {
         display.pop();
+        display.push('0');
 
         let displayP = document.createElement('p');
         let displayText = document.createTextNode('0');
@@ -280,7 +292,7 @@ backspace.addEventListener('click', () => {
 
         screen.appendChild(displayP);
     }
-})
+}
 
 
 
