@@ -17,7 +17,7 @@ body.addEventListener('keydown', event => {
     if (cKey.includes(event.key) && display.join('').length < 14) {
         let keyVal = event.key;
 
-        if (total === display[0]) {
+        if (total === display[0] && (!display[1])) {
             if (Number.isInteger(Number(keyVal)) || keyVal === '.') {
                 clearDisplay();
             }
