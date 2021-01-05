@@ -10,46 +10,47 @@ let total = '';
 
 // KEYBOARD COMPATIBILITY
 
-// body.addEventListener('keydown', event => {
-//     let cKey = '1234567890/*-+.';
-//     // cKey are keys on a calculator
+body.addEventListener('keydown', event => {
+    let cKey = '1234567890/*-+.×÷';
+    // cKey are keys on a calculator
 
-//     if (cKey.includes(event.key) && display.join('').length < 14) {
-//         let keyVal = event.key;
+    if (cKey.includes(event.key) && display.join('').length < 14) {
+        let keyVal = event.key;
 
-//         if (total === display[0] && (!display[1])) {
-//             if (Number.isInteger(Number(keyVal)) || keyVal === '.') {
-//                 clearDisplay();
-//             }
-//         }
+        if (total === display[0] && (!display[1])) {
+            if (Number.isInteger(Number(keyVal)) || keyVal === '.') {
+                clearDisplay();
+            }
+        }
 
-//         display.push(keyVal);
-//     } else if (event.key === 'Enter') {
-//         mathEquals();
-//     } else if (event.key === 'Backspace') {
-//         back();  
-//     } else {
-//         display.push(keyVal);
-//     }
+        display.push(keyVal);
+    } else if (event.key === 'Enter') {
+        mathEquals();
+    } else if (event.key === 'Backspace') {
+        back();  
+    } 
+    // else {
+    //     display.push(keyVal);
+    // }
 
-//     display = cleanDisplay(display);
+    display = cleanDisplay(display);
 
-//     let displayP = document.createElement('p');
-//     let displayText = document.createTextNode(display.join(''));
+    let displayP = document.createElement('p');
+    let displayText = document.createTextNode(display.join(''));
 
-//     displayP.appendChild(displayText);
+    displayP.appendChild(displayText);
 
-//     while (screen.lastChild) {
-//         screen.removeChild(screen.lastChild);
-//     }
+    while (screen.lastChild) {
+        screen.removeChild(screen.lastChild);
+    }
 
-//     screen.appendChild(displayP);
-
-
-// })
+    screen.appendChild(displayP);
 
 
-// THE MECHANICS
+})
+
+
+// THE BUTTON MECHANICS
 keys.forEach(element => {
     element.addEventListener('click', () => {
 
@@ -128,7 +129,10 @@ function cleanDisplay(arr) {
                 num = '';
             }
 
-            if (!isNaN(Number(input[i - 1]))) {
+            if (i === '0') {
+                display.push('0');
+                display.push(element);
+            } else if (!isNaN(Number(input[i - 1]))) {
                 if (element === '*') {
                     display.push('×');
                 } else if (element === '/') {
